@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_article" />
 
     <fragment
-        android:id="@+id/navigation_second"
-        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.second.SecondFragment"
-        android:label="@string/title_second"
-        tools:layout="@layout/fragment_second" />
+        android:id="@+id/navigation_list"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.ListFragment"
+        android:label="@string/title_list"
+        tools:layout="@layout/fragment_list" />
 
     <fragment
         android:id="@+id/navigation_third"
