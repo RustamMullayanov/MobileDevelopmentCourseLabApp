@@ -4,22 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
+import com.example.mobiledevelopmentcourselabapp.R
 import com.example.mobiledevelopmentcourselabapp.databinding.FragmentArticleBinding
 
 class ArticleFragment : Fragment() {
 
-    private var _binding: FragmentArticleBinding? = null
-
     private var score = 0
         set(value) {
             field = value
-            _binding?.likeResult?.text = value.toString()
+            _binding?.likeResult?.text = score.toString()
         }
+
+    private var _binding: FragmentArticleBinding? = null
 
     private val binding get() = _binding!!
 
@@ -29,22 +28,39 @@ class ArticleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentArticleBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        // Обращайся к элементам View здесь
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        score = savedInstanceState?.getInt(SCORE_TAG) ?: 0
+
+        context?.let {
+            Glide
+                .with(it)
+                .load("https://img.championat.com/s/732x488/news/big/b/g/stal-izvesten-novyj-kandidat-na-zamenu-kloppu-v-liverpule_17065467721853904716.jpg")
+                .placeholder(AppCompatResources.getDrawable(it, R.drawable.photo))
+                .into(binding.mainPhoto)
+        }
 
         binding.thumbUp.setOnClickListener { score++ }
         binding.thumbDown.setOnClickListener { score-- }
 
-        Glide
-            .with(requireContext())
-            .load("https://img.championat.com/s/732x488/news/big/b/g/stal-izvesten-novyj-kandidat-na-zamenu-kloppu-v-liverpule_17065467721853904716.jpg")
-            .into(binding.mainPhoto)
+        _binding?.likeResult?.text = score.toString()
+    }
 
-        return root
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putInt(SCORE_TAG, score)
+        super.onSaveInstanceState(outState)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val SCORE_TAG = "SCORE"
     }
 }
