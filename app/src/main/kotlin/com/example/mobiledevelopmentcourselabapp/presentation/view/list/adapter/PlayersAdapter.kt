@@ -29,36 +29,42 @@ class PlayersAdapter : RecyclerView.Adapter<PlayersAdapter.AvatarHolder>() {
     override fun onBindViewHolder(holder: AvatarHolder, position: Int) {
         val player = items[position]
 
-        with(holder.binding) {
-            name.text = player.name
-            number.text = player.number.toString()
+        holder.bind(player)
 
-            additionalFields.isVisible = player.isExpanded
-
-            age.text = holder.itemView.context.resources.getString(
-                R.string.age_pattern,
-                player.age,
-                holder.itemView.context.resources.getQuantityText(R.plurals.age, player.age)
-            ) // первый подход
-
-            playerPosition.text = player.formattedPosition
-            team.text = player.formattedTeam // второй подход
-
-            Glide
-                .with(holder.itemView)
-                .load(player.photoUrl)
-                .into(icon)
-
-            root.setOnClickListener {
-                player.isExpanded = !player.isExpanded
-                notifyItemChanged(position)
-            }
+        holder.setOnClickListener {
+            player.isExpanded = !player.isExpanded
+            notifyItemChanged(position)
         }
     }
 
     override fun getItemCount(): Int = items.size
 
     class AvatarHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val binding = ItemPlayerBinding.bind(itemView)
+        private val binding = ItemPlayerBinding.bind(itemView)
+
+        fun bind(player: PlayerUiModel) {
+            binding.name.text = player.name
+            binding.number.text = player.number.toString()
+
+            binding.additionalFields.isVisible = player.isExpanded
+
+            binding.age.text = itemView.context.resources.getString(
+                R.string.age_pattern,
+                player.age,
+                itemView.context.resources.getQuantityText(R.plurals.age, player.age)
+            ) // первый подход
+
+            binding.playerPosition.text = player.formattedPosition
+            binding.team.text = player.formattedTeam // второй подход
+
+            Glide
+                .with(itemView)
+                .load(player.photoUrl)
+                .into(binding.icon)
+        }
+
+        fun setOnClickListener(action: () -> Unit) {
+            binding.root.setOnClickListener { action.invoke() }
+        }
     }
 }
