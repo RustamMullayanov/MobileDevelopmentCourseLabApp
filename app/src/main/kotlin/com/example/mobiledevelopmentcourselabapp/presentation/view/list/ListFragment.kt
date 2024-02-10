@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.mobiledevelopmentcourselabapp.databinding.FragmentListBinding
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.adapter.PlayersAdapter
+import com.example.mobiledevelopmentcourselabapp.presentation.view.list.decor.VerticalSpaceItemDecoration
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.generator.Generator
+import com.example.mobiledevelopmentcourselabapp.utils.dpToPx
+import com.example.mobiledevelopmentcourselabapp.utils.orZero
+
 
 class ListFragment : Fragment() {
 
@@ -30,6 +34,9 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.playersList.adapter = adapter
         adapter.updateItems(Generator.generate())
+        //val dividerItemDecoration = DividerItemDecoration(context, VERTICAL)
+        //binding.playersList.addItemDecoration(dividerItemDecoration)
+        binding.playersList.addItemDecoration(VerticalSpaceItemDecoration(context?.dpToPx(60).orZero()))
     }
 
     override fun onDestroyView() {

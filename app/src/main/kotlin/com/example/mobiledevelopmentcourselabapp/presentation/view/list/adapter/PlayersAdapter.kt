@@ -1,5 +1,6 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,40 +8,58 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mobiledevelopmentcourselabapp.R
+import com.example.mobiledevelopmentcourselabapp.databinding.ItemAdCardBinding
 import com.example.mobiledevelopmentcourselabapp.databinding.ItemPlayerBinding
+import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.AdUiModel
+import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.ItemUiModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.PlayerUiModel
 
-class PlayersAdapter : RecyclerView.Adapter<PlayersAdapter.AvatarHolder>() {
+class PlayersAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var items: MutableList<PlayerUiModel> = arrayListOf()
+    private var items: MutableList<ItemUiModel> = arrayListOf()
 
-    fun updateItems(newItems: List<PlayerUiModel>) {
+    fun updateItems(newItems: List<ItemUiModel>) {
         items = newItems.toMutableList()
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AvatarHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_player, parent, false)
-
-        return AvatarHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        Log.d("onCreateViewHolder", "Я создаль")
+        return if (viewType == PLAYER_ID) {
+            val binding =
+                ItemPlayerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            AvatarHolder(binding)
+        } else {
+            val binding =
+                ItemAdCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            AdHolder(binding)
+        }
     }
 
-    override fun onBindViewHolder(holder: AvatarHolder, position: Int) {
-        val player = items[position]
+    override fun getItemViewType(position: Int): Int {
+        return when (items[position]) {
+            is PlayerUiModel -> PLAYER_ID
+            AdUiModel -> AD_ID
+            else -> AD_ID
+        }
+    }
 
-        holder.bind(player)
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = items[position]
 
-        holder.setOnClickListener {
-            player.isExpanded = !player.isExpanded
-            notifyItemChanged(position)
+        if (item is PlayerUiModel && holder is AvatarHolder) {
+            holder.bind(item)
+
+            holder.setOnClickListener {
+                item.isExpanded = !item.isExpanded
+                notifyItemChanged(position)
+            }
         }
     }
 
     override fun getItemCount(): Int = items.size
 
-    class AvatarHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemPlayerBinding.bind(itemView)
+    class AvatarHolder(private val binding: ItemPlayerBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(player: PlayerUiModel) {
             binding.name.text = player.name
@@ -66,5 +85,12 @@ class PlayersAdapter : RecyclerView.Adapter<PlayersAdapter.AvatarHolder>() {
         fun setOnClickListener(action: () -> Unit) {
             binding.root.setOnClickListener { action.invoke() }
         }
+    }
+
+    class AdHolder(binding: ItemAdCardBinding) : RecyclerView.ViewHolder(binding.root)
+
+    companion object {
+        const val PLAYER_ID = 0
+        const val AD_ID = 1
     }
 }

@@ -1,8 +1,11 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.generator
 
+import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.AdUiModel
+import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.ItemUiModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.PlayerUiModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.Position
 import com.github.javafaker.Faker
+import kotlin.random.Random
 
 object Generator {
     private const val PLAYERS_COUNT = 100
@@ -12,9 +15,9 @@ object Generator {
         "1036407-1706528684.jpg", "705864-1678301241.jpg", "149577-1617369576.png"
     )
 
-    fun generate(): List<PlayerUiModel> {
+    fun generate(): List<ItemUiModel> {
         val faker = Faker()
-        return mutableListOf<PlayerUiModel>().apply {
+        return mutableListOf<ItemUiModel>().apply {
             repeat(PLAYERS_COUNT) {
                 add(
                     PlayerUiModel(
@@ -26,6 +29,7 @@ object Generator {
                         photoUrl = PHOTO_LINK + photos.random()
                     )
                 )
+                if (Random.nextBoolean()) add(AdUiModel)
             }
         }
     }

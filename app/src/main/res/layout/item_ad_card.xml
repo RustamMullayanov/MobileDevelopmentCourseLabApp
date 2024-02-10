@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/offset_medium"
+    android:backgroundTint="@color/teal_200"
+    app:cardCornerRadius="8dp">
+
+    <TextView
+        style="@style/TextView.Subtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/offset_medium"
+        android:text="Это реклама!"/>
+
+</com.google.android.material.card.MaterialCardView>

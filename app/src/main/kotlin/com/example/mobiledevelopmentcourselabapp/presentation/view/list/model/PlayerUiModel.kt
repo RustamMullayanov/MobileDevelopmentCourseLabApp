@@ -1,5 +1,7 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.model
 
+interface ItemUiModel
+
 class PlayerUiModel(
     val name: String,
     val photoUrl: String,
@@ -8,7 +10,7 @@ class PlayerUiModel(
     val position: Position,
     val age: Int,
     var isExpanded: Boolean = false
-) {
+): ItemUiModel {
     val formattedTeam = "Команда: $team"
     val formattedPosition = "Позиция: ${position.rusName}"
 }
@@ -20,3 +22,4 @@ enum class Position(val rusName: String = "") {
     FORWARD("Нападающий")
 }
 
+object AdUiModel : ItemUiModel
