@@ -15,7 +15,18 @@
         android:id="@+id/navigation_list"
         android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.ListFragment"
         android:label="@string/title_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_navigation_list_to_navigation_card"
+            app:destination="@id/navigation_card"
+            app:defaultNavHost="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_card"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.CardFragment"
+        android:label="@string/title_card"
+        tools:layout="@layout/fragment_card" />
 
     <fragment
         android:id="@+id/navigation_third"

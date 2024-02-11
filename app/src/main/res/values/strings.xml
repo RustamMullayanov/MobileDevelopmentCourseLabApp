@@ -2,14 +2,56 @@
     <string name="app_name">MobileDevelopmentCourseLabApp</string>
     <string name="title_article">Статья</string>
     <string name="title_list">Список</string>
+    <string name="title_card">Карточка</string>
     <string name="title_third">Третий</string>
 
-    <string name="age_pattern">Возраст: %d %s</string>
+    <string name="stats">Статистика выступлений</string>
+    <string name="count_pattern">%d %s</string>
+    <string name="age_title">Возраст</string>
+    <string name="position">Позиция</string>
+    <string name="team">Команда</string>
+    <string name="infoTitle">Информация</string>
+    <string name="share">Поделиться</string>
 
     <plurals name="age">
         <item quantity="one">год</item>
         <item quantity="few">года</item>
         <item quantity="many">лет</item>
         <item quantity="other">лет</item>
+    </plurals>
+
+    <plurals name="games">
+        <item quantity="one">игра</item>
+        <item quantity="few">игры</item>
+        <item quantity="many">игр</item>
+        <item quantity="other">игр</item>
+    </plurals>
+
+    <plurals name="goals">
+        <item quantity="one">гол</item>
+        <item quantity="few">гола</item>
+        <item quantity="many">голов</item>
+        <item quantity="other">голов</item>
+    </plurals>
+
+    <plurals name="assists">
+        <item quantity="one">передача</item>
+        <item quantity="few">передачи</item>
+        <item quantity="many">передач</item>
+        <item quantity="other">передач</item>
+    </plurals>
+
+    <plurals name="yellows">
+        <item quantity="one">желтая</item>
+        <item quantity="few">желтых</item>
+        <item quantity="many">желтых</item>
+        <item quantity="other">желтых</item>
+    </plurals>
+
+    <plurals name="reds">
+        <item quantity="one">красная</item>
+        <item quantity="few">красных</item>
+        <item quantity="many">красных</item>
+        <item quantity="other">красных</item>
     </plurals>
 </resources>

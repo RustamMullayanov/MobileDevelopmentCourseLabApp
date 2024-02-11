@@ -1,19 +1,23 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.model
 
-interface ItemUiModel
+import java.io.Serializable
 
-class PlayerUiModel(
+interface ItemUiModel: Serializable
+
+data class PlayerUiModel(
     val name: String,
     val photoUrl: String,
     val number: Int,
     val team: String,
     val position: Position,
     val age: Int,
+    val gamesCount: Int,
+    val goalsCount: Int,
+    val assistsCount: Int,
+    val yellowCardCount: Int,
+    val redCardsCount: Int,
     var isExpanded: Boolean = false
-): ItemUiModel {
-    val formattedTeam = "Команда: $team"
-    val formattedPosition = "Позиция: ${position.rusName}"
-}
+): ItemUiModel
 
 enum class Position(val rusName: String = "") {
     GOALKEEPER("Вратарь"),
