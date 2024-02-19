@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_list"
-        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.ListFragment"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.ListFragment"
         android:label="@string/title_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/navigation_card"
-        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.CardFragment"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.CardFragment"
         android:label="@string/title_card"
         tools:layout="@layout/fragment_card" />
 

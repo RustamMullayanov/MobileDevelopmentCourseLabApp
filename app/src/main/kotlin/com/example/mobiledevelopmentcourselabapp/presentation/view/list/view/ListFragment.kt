@@ -1,4 +1,4 @@
-package com.example.mobiledevelopmentcourselabapp.presentation.view.list
+package com.example.mobiledevelopmentcourselabapp.presentation.view.list.view
 
 import android.os.Bundle
 import android.view.LayoutInflater

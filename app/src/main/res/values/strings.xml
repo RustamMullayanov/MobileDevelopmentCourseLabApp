@@ -12,6 +12,7 @@
     <string name="team">Команда</string>
     <string name="infoTitle">Информация</string>
     <string name="share">Поделиться</string>
+    <string name="comments">Комментарии</string>
 
     <plurals name="age">
         <item quantity="one">год</item>

@@ -1,4 +1,4 @@
-package com.example.mobiledevelopmentcourselabapp.presentation.view.list
+package com.example.mobiledevelopmentcourselabapp.presentation.view.list.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,20 +9,39 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.annotation.PluralsRes
-import androidx.fragment.app.Fragment
+import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import com.bumptech.glide.Glide
+import com.example.mobiledevelopmentcourselabapp.App
 import com.example.mobiledevelopmentcourselabapp.R
 import com.example.mobiledevelopmentcourselabapp.databinding.FragmentCardBinding
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.PlayerUiModel
+import com.example.mobiledevelopmentcourselabapp.presentation.view.list.presenter.CardPresenter
+import com.google.android.material.snackbar.Snackbar
+import moxy.MvpAppCompatFragment
+import moxy.ktx.moxyPresenter
+import javax.inject.Inject
+import javax.inject.Provider
 
-class CardFragment  : Fragment() {
+class CardFragment : MvpAppCompatFragment(), CardMvpView {
 
     private var _binding: FragmentCardBinding? = null
 
     private val binding get() = _binding!!
 
     private val player by lazy { arguments?.getSerializable(CARD_PLAYER_KEY) as? PlayerUiModel }
+
+    @Inject
+    lateinit var presenterProvider: Provider<CardPresenter>
+
+    private val presenter by moxyPresenter { presenterProvider.get() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent?.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,6 +76,23 @@ class CardFragment  : Fragment() {
             setStat(binding.assistsCount, player.assistsCount, R.plurals.assists)
             setStat(binding.yellowCardsCount, player.yellowCardCount, R.plurals.yellows)
             setStat(binding.redCardsCount, player.redCardsCount, R.plurals.reds)
+
+            binding.comments.commentTitle.setOnClickListener {
+                presenter.onCommentTitleClicked()
+            }
+
+            binding.comments.commentInput.doOnTextChanged { text, _, _, _ ->
+                presenter.onCommentChanged(text)
+            }
+
+            binding.comments.sendButton.setOnClickListener {
+                Snackbar.make(
+                    requireContext(),
+                    binding.root,
+                    binding.comments.commentInput.text.toString(),
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
@@ -99,6 +135,18 @@ class CardFragment  : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun setHiddenGroupVisibility(isVisible: Boolean) {
+        binding.comments.hiddenGroup.isVisible = isVisible
+    }
+
+    override fun setCommentChevronIcon(@DrawableRes icon: Int) {
+        binding.comments.chevron.setImageResource(icon)
+    }
+
+    override fun setSendButtonEnabled(isEnabled: Boolean) {
+        binding.comments.sendButton.isEnabled = isEnabled
     }
 
     companion object {
