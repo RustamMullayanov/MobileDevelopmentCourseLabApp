@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="RegularText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="TextView.Subtitle1" parent="RegularText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+</resources>

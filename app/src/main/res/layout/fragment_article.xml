@@ -2,51 +2,53 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingHorizontal="16dp">
+
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:textSize="20sp"
+            android:text="Что-то похожее на заголовок"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="Что-то похожее на заголовок"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/author"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
             android:text="Басистый Павел"
-            />
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/dateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:textSize="14sp"
-
             android:text="6 февраля 2024 года,18:34"
-            />
+
+            android:textSize="14sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textSize="18sp"
             android:lineSpacingMultiplier="1.2"
-            android:textColor="@color/black"
             android:text="Главный тренер лиссабонского «Спортинга» Рубен Аморим стал новым кандидатом на замену Юргену Клоппу в английском «Ливерпуле», сообщает Daily Mail. По информации источника, Аморим является аутсайдером в шорт-листе «Ливерпуля» на пост главного тренера команды. Однако мерсисайдцы интересуются защитниками «Спортинга» Усманом Диоманде и Гонсало Инасиу, а 39-летний специалист может уговорить игроков перейти в английский клуб."
-           />
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/ronaldoIMG"
@@ -60,9 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-1dp"
             android:gravity="center"
-            android:textSize="14sp"
             android:text="Рональду Крестианин"
-            />
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="380dp"
@@ -71,35 +72,35 @@
             android:lineSpacingMultiplier="1.2"
             android:text="Аморим возглавил «Спортинг» в марте 2020 года и впервые за 20 лет принёс титул чемпионов португальской лиги."
             android:textColor="@color/black"
-            android:textSize="18sp"
-             />
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="56dp"
-        android:gravity="center">
+            android:textSize="18sp" />
 
-        <ImageButton
-            android:id="@+id/thumbUp"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/like"
-            />
-        <ImageButton
-            android:id="@+id/thumbDown"
-            android:layout_width="76dp"
-            android:layout_height="76dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/dislike"
-            />
-        <TextView
-            android:id="@+id/likeResult"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="0"/>
-    </LinearLayout>
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="56dp"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/thumbUp"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/like" />
+
+            <ImageButton
+                android:id="@+id/thumbDown"
+                android:layout_width="76dp"
+                android:layout_height="76dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/dislike" />
+
+            <TextView
+                android:id="@+id/likeResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="30sp" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
