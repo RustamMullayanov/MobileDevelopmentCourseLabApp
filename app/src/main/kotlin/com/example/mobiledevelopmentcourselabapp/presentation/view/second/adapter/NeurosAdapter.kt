@@ -13,7 +13,9 @@ import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.Position
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.NeuroUIClass
 import com.bumptech.glide.Glide
-class NeurosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NeurosAdapter(
+    private val onNeuroClicked: (NeuroUIClass) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: MutableList<ItemUIModel> = arrayListOf()
     fun updateItems(newItems: List<ItemUIModel>){
         items = newItems.toMutableList()
@@ -46,6 +48,7 @@ class NeurosAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         {
             holder.bind(item)
             holder.setOnClickListener {
+                onNeuroClicked.invoke(item)
                 item.isExpanded = !item.isExpanded
                 notifyItemChanged(position)
             }

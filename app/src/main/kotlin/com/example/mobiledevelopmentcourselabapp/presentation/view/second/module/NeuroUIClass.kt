@@ -1,9 +1,8 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.second.module
-
+import android.os.Parcelable
 import com.example.mobiledevelopmentcourselabapp.databinding.ItemNeuroBinding
-
-
-class NeuroUIClass(
+import java.io.Serializable
+data class NeuroUIClass(
     val name: String,
     val photoUrl: String,
     val number: Int,
@@ -22,6 +21,6 @@ enum class Position(val Name: String = ""){
     MUSIC("MusicFX")
 }
 class AdUiModel(val text: String) : ItemUIModel
-interface ItemUIModel
+interface ItemUIModel : Serializable
 
 

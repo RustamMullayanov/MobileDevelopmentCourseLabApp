@@ -4,4 +4,8 @@
     <string name="title_second">Второй</string>
     <string name="title_third">Третий</string>
     <string name="global_pos">Место: %d</string>
+    <string name="info_title">Информация:</string>
+    <string name="pos_title">Место:</string>
+    <string name="velocity_gen">Скорость генерации контента:</string>
+    <string name= "company_title">Название компании:</string>
 </resources>
