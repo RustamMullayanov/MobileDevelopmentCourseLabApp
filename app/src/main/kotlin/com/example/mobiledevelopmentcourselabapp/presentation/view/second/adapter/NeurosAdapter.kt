@@ -1,30 +1,42 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.second.adapter
-import android.content.ClipData.Item
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.mobiledevelopmentcourselabapp.R
 import com.example.mobiledevelopmentcourselabapp.databinding.AdItemBinding
+import com.example.mobiledevelopmentcourselabapp.databinding.AddStrBinding
 import com.example.mobiledevelopmentcourselabapp.databinding.ItemNeuroBinding
+import com.example.mobiledevelopmentcourselabapp.presentation.view.second.adapter.NeurosAdapter.AdHolder.Companion.ADD_ID
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.adapter.NeurosAdapter.AdHolder.Companion.AD_ID
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.adapter.NeurosAdapter.AdHolder.Companion.NEURO_ID
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.AdUiModel
+import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.AddStrClass
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.ItemUIModel
-import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.Position
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.NeuroUIClass
-import com.bumptech.glide.Glide
+
+
 class NeurosAdapter(
     private val onNeuroClicked: (NeuroUIClass) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: MutableList<ItemUIModel> = arrayListOf()
+    private var currentNeuroCount = 0
     fun updateItems(newItems: List<ItemUIModel>){
         items = newItems.toMutableList()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
         if (viewType == NEURO_ID)
         {
             val binding = ItemNeuroBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return AvatarHolder(binding)
+        }
+        else if (viewType == ADD_ID)
+        {
+            val binding =AddStrBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return  AddHolder(binding)
         }
         val binding = AdItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AdHolder(binding)
@@ -35,10 +47,27 @@ class NeurosAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when(items[position])
+        val item = items[position]
+        return when(item)
         {
-            is NeuroUIClass -> NEURO_ID
-            is AdUiModel -> AD_ID
+            is NeuroUIClass -> {
+                currentNeuroCount++
+                NEURO_ID
+            }
+            is AdUiModel ->{
+                if (currentNeuroCount % 5 == 0) {  // Show AddStrClass every 5th NeuroUIClass
+                    AD_ID
+                } else {
+                    2
+                }
+            }
+            is AddStrClass -> {
+                if (currentNeuroCount % 5 == 0) {  // Show AddStrClass every 5th NeuroUIClass
+                    ADD_ID
+                } else {
+                    1
+                }
+            }
             else -> AD_ID
         }
     }
@@ -53,8 +82,9 @@ class NeurosAdapter(
                 notifyItemChanged(position)
             }
         }
-
-
+        else if (holder is AddHolder && item is AddStrClass) {
+            holder.bind(item)
+        }
     }
     class AvatarHolder(private val binding: ItemNeuroBinding) : RecyclerView.ViewHolder(binding.root){
         var arrayTypeWords = arrayOf(" слов в минуту", " мелодий за 20 секунд", " картинки в минуту", " картинок в минуту",
@@ -111,11 +141,22 @@ class NeurosAdapter(
         companion object{
             const val NEURO_ID = 0
             const val AD_ID = 1
+            const val ADD_ID = 2
         }
         fun bind(adItem: AdUiModel) {
             binding.idAdd.text = adItem.text
         }
 
+    }
+    class AddHolder(private val binding: AddStrBinding) :RecyclerView.ViewHolder(binding.root)
+    {
+        fun bind(addItem: AddStrClass) {
+            binding.description.text = addItem.description
+            Glide
+                .with(itemView)
+                .load(addItem.photo)
+                .into(binding.addImage)
+        }
     }
 
 }

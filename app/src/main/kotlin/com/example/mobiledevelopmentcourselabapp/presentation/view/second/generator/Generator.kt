@@ -2,6 +2,7 @@ package com.example.mobiledevelopmentcourselabapp.presentation.view.second.gener
 
 
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.AdUiModel
+import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.AddStrClass
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.ItemUIModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.NeuroUIClass
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.Position
@@ -39,6 +40,12 @@ object   Generator {
                         photoUrl = if (position.Name == "GPT-4") listURLS[0] else if
                                 (position.Name == "Gemini") listURLS[1] else if (position.Name == "MusicFX") listURLS[2] else if (
                                 position.Name == "MidJourney") listURLS[3] else listURLS[4]
+                    )
+                )
+                add (
+                    AddStrClass(
+                        description = "Ilon Mask",
+                        photo = "https://u2.9111s.ru/uploads/202301/06/e296190b84f13fd4e2f9a7f36bc3b311.jpg"
                     )
                 )
                 if (Random.nextBoolean()) add(AdUiModel(faker.funnyName().name()))

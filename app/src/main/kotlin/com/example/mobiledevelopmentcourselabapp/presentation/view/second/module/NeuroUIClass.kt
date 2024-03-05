@@ -21,6 +21,10 @@ enum class Position(val Name: String = ""){
     MUSIC("MusicFX")
 }
 class AdUiModel(val text: String) : ItemUIModel
+class AddStrClass(
+    val photo: String,
+    val description: String
+) : ItemUIModel
 interface ItemUIModel : Serializable
 
 
