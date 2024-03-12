@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.mobiledevelopmentcourselabapp.App
 import com.example.mobiledevelopmentcourselabapp.R
 import com.example.mobiledevelopmentcourselabapp.databinding.FragmentCardBinding
+import com.example.mobiledevelopmentcourselabapp.presentation.view.list.adapter.CommentsAdapter
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.PlayerUiModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.presenter.CardPresenter
 import com.google.android.material.snackbar.Snackbar
@@ -32,6 +33,8 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
     private val binding get() = _binding!!
 
     private val player by lazy { arguments?.getSerializable(CARD_PLAYER_KEY) as? PlayerUiModel }
+
+    private val adapter by lazy { CommentsAdapter() }
 
     @Inject
     lateinit var presenterProvider: Provider<CardPresenter>
@@ -76,23 +79,20 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
             setStat(binding.assistsCount, player.assistsCount, R.plurals.assists)
             setStat(binding.yellowCardsCount, player.yellowCardCount, R.plurals.yellows)
             setStat(binding.redCardsCount, player.redCardsCount, R.plurals.reds)
+        }
 
-            binding.comments.commentTitle.setOnClickListener {
-                presenter.onCommentTitleClicked()
-            }
+        binding.comments.commentsList.adapter = adapter
 
-            binding.comments.commentInput.doOnTextChanged { text, _, _, _ ->
-                presenter.onCommentChanged(text)
-            }
+        binding.comments.commentTitle.setOnClickListener {
+            presenter.onCommentTitleClicked()
+        }
 
-            binding.comments.sendButton.setOnClickListener {
-                Snackbar.make(
-                    requireContext(),
-                    binding.root,
-                    binding.comments.commentInput.text.toString(),
-                    Snackbar.LENGTH_SHORT
-                ).show()
-            }
+        binding.comments.commentInput.doOnTextChanged { text, _, _, _ ->
+            presenter.onCommentChanged(text)
+        }
+
+        binding.comments.sendButton.setOnClickListener {
+            presenter.onSendButtonClicked()
         }
     }
 
@@ -147,6 +147,27 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
 
     override fun setSendButtonEnabled(isEnabled: Boolean) {
         binding.comments.sendButton.isEnabled = isEnabled
+    }
+
+    override fun setMessageError(error: String) {
+        binding.comments.commentInputLayout.error = error
+    }
+
+    override fun addComment(comment: String) {
+        adapter.addComment(comment)
+    }
+
+    override fun setCommentText(text: String) {
+        binding.comments.commentInput.setText(text)
+    }
+
+    override fun showSnackbar() {
+        Snackbar.make(
+            requireContext(),
+            binding.root,
+            "Сообщение отправлено",
+            Snackbar.LENGTH_LONG
+        ).show()
     }
 
     companion object {

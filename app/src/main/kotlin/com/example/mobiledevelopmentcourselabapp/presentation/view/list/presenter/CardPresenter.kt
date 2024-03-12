@@ -9,8 +9,8 @@ import javax.inject.Inject
 
 @InjectViewState
 class CardPresenter @Inject constructor(): MvpPresenter<CardMvpView>() {
-
     private var isCommentsOpen = false
+    private var message: String? = null
 
     fun onCommentTitleClicked() {
         isCommentsOpen = isCommentsOpen.not()
@@ -25,6 +25,20 @@ class CardPresenter @Inject constructor(): MvpPresenter<CardMvpView>() {
     }
 
     fun onCommentChanged(text: CharSequence?) {
+        message = text.toString()
         viewState.setSendButtonEnabled(text?.isNotBlank().orFalse())
+        viewState.setMessageError("")
+    }
+
+    fun onSendButtonClicked() {
+        if (message?.equals("ошибка").orFalse()) {
+            viewState.setMessageError("Это ошибка!")
+        } else {
+            message?.let {
+                viewState.addComment(it)
+                viewState.showSnackbar()
+                viewState.setCommentText("")
+            }
+        }
     }
 }

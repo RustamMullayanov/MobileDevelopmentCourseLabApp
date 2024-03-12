@@ -13,6 +13,7 @@
     <string name="infoTitle">Информация</string>
     <string name="share">Поделиться</string>
     <string name="comments">Комментарии</string>
+    <string name="comments_hint">Введите комментарий</string>
 
     <plurals name="age">
         <item quantity="one">год</item>

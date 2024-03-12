@@ -227,7 +227,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/field" />
+            app:layout_constraintTop_toBottomOf="@id/field"
+            android:paddingBottom="@dimen/offset_large" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
