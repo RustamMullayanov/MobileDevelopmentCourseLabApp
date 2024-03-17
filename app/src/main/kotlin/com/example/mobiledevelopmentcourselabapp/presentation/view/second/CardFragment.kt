@@ -32,7 +32,7 @@ class CardFragment  : Fragment() {
         var arrayTypeWords = arrayOf(" слов в минуту", " мелодий за 20 секунд", " картинки в минуту", " картинок в минуту",
             " мелодия за 20 секунд");
         var arrayTypeWordsGames = arrayOf(" игра", " игры", " игр")
-        var arrayTypeWordsWin = arrayOf(" победа", "победы", " побед")
+        var arrayTypeWordsWin = arrayOf(" победа", " победы", " побед")
         var arrayTypeWordsGreenCards = arrayOf(" зеленая", "зеленые", " зеленых")
         var arrayTypeWordsCountUpgrades = arrayOf(" обновление", "обновления", " обновлений")
         var arrayTypeWordsYellowCards= arrayOf(" желтая", " желтые", " желтых")
