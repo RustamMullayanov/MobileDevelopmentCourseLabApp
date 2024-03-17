@@ -25,4 +25,18 @@
         развитием AI с учетом ответственности и безопасности.
         Илон Маск — фигура, чьи взгляды и достижения оказывают значительное влияние на технологический
         мир и будущее искусственного интеллекта.</string>
+    <string name="share">Поделиться</string>
+    <string name="statusTitle">Статистика выступлений:</string>
+    <string name ="gamesCount">Кол-во игр</string>
+    <string name="winCount">Кол-во побед</string>
+    <string name="upgradesCount">Кол-во обновлений</string>
+    <string name="yellowCardsCount">1 желтая</string>
+    <string name="greenCardsCount">3 зеленых</string>
+    <string name="count_pattern">%d %s</string>
+    <plurals name="plurals_upgrades">
+        <item quantity="one">обновление</item>
+        <item quantity="two">обновления</item>
+        <item quantity="few">обновления</item>
+        <item quantity="many">обновлений</item>
+    </plurals>
 </resources>

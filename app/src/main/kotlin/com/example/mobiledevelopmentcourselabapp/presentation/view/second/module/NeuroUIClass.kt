@@ -11,6 +11,11 @@ data class NeuroUIClass(
     val easy_content_velocity_gen: Int,
     val hard_content_velocity_gen: Int,
     val neuroTask: String,
+    val fightsCount: Int,
+    val winCount: Int,
+    val upgradesCount: Int,
+    val yellowCardCount: Int,
+    val greenCardsCount: Int,
     var isExpanded: Boolean = false
 ) : ItemUIModel
 enum class Position(val Name: String = ""){

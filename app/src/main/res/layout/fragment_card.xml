@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="ExtraText">
     <ImageView
         android:id="@+id/icon"
         android:layout_width="@dimen/icon_48"
@@ -16,11 +17,14 @@
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
         android:text="Илон Маск"
         app:layout_constraintBottom_toBottomOf="@id/icon"
         app:layout_constraintEnd_toStartOf="@id/tShirt"
         app:layout_constraintStart_toEndOf="@id/icon"
         app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         />
 
     <ImageView
@@ -45,6 +49,7 @@
         app:layout_constraintStart_toStartOf="@id/tShirt"
         app:layout_constraintTop_toTopOf="@id/tShirt"
         android:gravity="center"
+        android:textStyle="bold"
         />
 
     <androidx.constraintlayout.widget.Barrier
@@ -59,11 +64,13 @@
         android:id="@+id/infoTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="@dimen/offset_medium"
         app:layout_constraintTop_toBottomOf="@+id/headerBarrier"
         android:text="@string/info_title"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         />
-
     <androidx.constraintlayout.widget.Barrier
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,11 +83,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="@string/pos_title"
         android:id="@+id/ageTitle"
         app:layout_constraintTop_toBottomOf="@id/infoTitle"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="@dimen/offset_small"/>
+        android:layout_marginTop="@dimen/offset_small"
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -95,11 +105,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:id="@+id/positionTitle"
         android:layout_marginTop="@dimen/offset_small"
         app:layout_constraintTop_toBottomOf="@id/ageTitle"
         app:layout_constraintStart_toStartOf="parent"
         android:text="@string/velocity_gen"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -114,13 +127,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:id="@+id/teamTitle"
         app:layout_constraintTop_toBottomOf="@id/positionTitle"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/offset_small"
         android:text="@string/company_title"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -130,5 +145,158 @@
         android:layout_marginTop="@dimen/offset_small"
         android:text="OpenAI"
         />
+    <TextView
+        android:id="@+id/statusTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/offset_36"
+        app:layout_constraintTop_toBottomOf="@id/positionTitle"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:text="@string/statusTitle"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+    <RelativeLayout
+        android:id="@+id/shapeGamesCount"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_blue"
+        app:layout_constraintTop_toBottomOf="@id/statusTitle"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginLeft="-200dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/fightsCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/gamesCount"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="-2dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/shapeCountWin"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_red"
+        app:layout_constraintTop_toBottomOf="@id/statusTitle"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginLeft="-70dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/winCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/winCount"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="-2dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/shapeUpgradesCount"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_blue_dark"
+        app:layout_constraintTop_toBottomOf="@id/shapeCountWin"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginLeft="-140dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/upgradesCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/upgradesCount"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="-2dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/shapeCountYellowCards"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_light_yellow"
+        app:layout_constraintTop_toBottomOf="@id/shapeCountWin"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/yellowCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/yellowCardsCount"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="-2dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/shapeCountGreenCards"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_green"
+        app:layout_constraintTop_toBottomOf="@id/statusTitle"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:id="@+id/greenCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/greenCardsCount"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="-2dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/neuroField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/neuro_field"
+        app:layout_constraintTop_toBottomOf="@id/shapeUpgradesCount"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginLeft="-117dp"
+        android:layout_marginTop="-5dp">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/t_shirt"
+            android:layout_marginTop="90dp"
+            android:layout_marginLeft="7dp"
+            />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="173dp"
+            android:layout_marginTop="90dp"
+            android:src="@drawable/t_shirt" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="90dp"
+            android:src="@drawable/t_shirt" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="90dp"
+            android:src="@drawable/t_shirt" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="90dp"
+            android:src="@drawable/t_shirt_green" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

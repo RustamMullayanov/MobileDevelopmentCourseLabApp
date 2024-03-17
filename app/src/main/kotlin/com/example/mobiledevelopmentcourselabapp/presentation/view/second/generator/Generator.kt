@@ -39,7 +39,12 @@ object   Generator {
                             tasksNeuro[1] else tasksNeuro[2],
                         photoUrl = if (position.Name == "GPT-4") listURLS[0] else if
                                 (position.Name == "Gemini") listURLS[1] else if (position.Name == "MusicFX") listURLS[2] else if (
-                                position.Name == "MidJourney") listURLS[3] else listURLS[4]
+                                position.Name == "MidJourney") listURLS[3] else listURLS[4],
+                        fightsCount = 30,
+                        winCount = (1..5).random(),
+                        upgradesCount = (20..30).random(),
+                        yellowCardCount = (1..10).random(),
+                        greenCardsCount = 1
                     )
                 )
                 add (
