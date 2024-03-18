@@ -3,13 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_list">
+    app:startDestination="@+id/navigation_article">
 
     <fragment
         android:id="@+id/navigation_article"
-        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.article.ArticleFragment"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.article.view.ArticleFragment"
         android:label="@string/title_article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article">
+        <action
+            android:id="@+id/action_navigation_article_to_webView"
+            app:destination="@id/webViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.article.view.WebViewFragment"
+        android:label="Веб-страница"
+        tools:layout="@layout/fragment_web_view"/>
 
     <fragment
         android:id="@+id/navigation_list"
