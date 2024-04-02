@@ -1,6 +1,7 @@
 package com.example.mobiledevelopmentcourselabapp
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -30,8 +31,16 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_second,
                 R.id.navigation_third
             )
+
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView?.setupWithNavController(navController)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            onBackPressedDispatcher.onBackPressed()
+            return true
+        }
+        return false
     }
 }

@@ -3,7 +3,13 @@
     <string name="title_article">Статья</string>
     <string name="title_second">Второй</string>
     <string name="title_third">Третий</string>
+    <string name="buttonShare">Поделиться</string>
+    <string name="stats_title">Статистика выступлений</string>
     <string name="age_pattern">Возраст: %d %s</string>
+    <string name="info_title">Информация</string>
+    <string name="position_title">Позиция</string>
+    <string name="team_title">Команда</string>
+    <string name="age_title">Возраст</string>
     <plurals name="age">
         <item quantity="one">год</item>
         <item quantity="few">года</item>

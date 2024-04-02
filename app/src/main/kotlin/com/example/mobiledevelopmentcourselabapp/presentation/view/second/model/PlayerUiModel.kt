@@ -1,5 +1,9 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.second.model
 
+import java.io.Serializable
+import java.time.LocalTime
+interface ItemUIModel : Serializable
+
 data class PlayerUiModel(
     val name: String,
     val photoUrl: String,
@@ -7,8 +11,16 @@ data class PlayerUiModel(
     val team: String,
     val position: Position,
     val age: Int,
-    var isExpanded: Boolean = false
+    var isExpanded: Boolean = false,
+    val gameCount: Int,
+    val goalCount: Int,
+    val redCardCount: Int,
+    val yellowCardCount: Int,
+    val assistCount: Int
+
+
 ): ItemUIModel
+
 
 data class Board(
     val photoUrlBoard: String,
@@ -24,5 +36,3 @@ enum class Position(val rusName: String){
 }
 
 class AdUIModel(val text: String): ItemUIModel
-
-interface  ItemUIModel

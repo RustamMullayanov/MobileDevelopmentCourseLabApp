@@ -3,6 +3,7 @@ package com.example.mobiledevelopmentcourselabapp.presentation.view.second.adapt
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mobiledevelopmentcourselabapp.R
@@ -15,7 +16,7 @@ import com.example.mobiledevelopmentcourselabapp.presentation.view.second.model.
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.model.PlayerUiModel
 
 
-class PlayersAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PlayersAdapter(private val onPlayerClicked : (PlayerUiModel)-> Unit): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //БД ПРО ИНФУ ОБ ИГРОКАХ
     private  var items: MutableList<ItemUIModel> = arrayListOf();
@@ -59,6 +60,7 @@ class PlayersAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if(holder is AvatarHolder && item is PlayerUiModel){
             holder.bind(item)
             holder.setOnClick {
+                onPlayerClicked.invoke(item)
                 item.isExpanded = !item.isExpanded
                 notifyItemChanged(position)
             }
@@ -92,9 +94,11 @@ class PlayersAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
         fun setOnClick(action : () -> Unit){
             binding.root.setOnClickListener{
+                //itemView.findNavController()?.navigate(R.id.action_navigation_list_to_navigation_card)
                 action.invoke()
             }
         }
+
     }
 
     class AdHolder(private val binding: ItemAdBinding): RecyclerView.ViewHolder(binding.root) {

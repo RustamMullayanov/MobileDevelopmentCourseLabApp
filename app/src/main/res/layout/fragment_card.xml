@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/icon_48"
+        android:layout_height="@dimen/icon_48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/account_placeholder"
+        />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="@dimen/icon_0"
+        android:layout_height="wrap_content"
+        style="@style/surnameStyle"
+        android:text="Басистый Павел Александрович"
+        app:layout_constraintBottom_toBottomOf="@+id/icon"
+        app:layout_constraintEnd_toStartOf="@+id/tShirt"
+        app:layout_constraintStart_toEndOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+
+    <ImageView
+        android:id="@+id/tShirt"
+        android:layout_width="@dimen/icon_48"
+        android:layout_height="@dimen/icon_48"
+        android:src="@drawable/t_shirt"
+        app:layout_constraintBottom_toBottomOf="@+id/icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="@dimen/icon_0"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="10"
+        app:layout_constraintBottom_toBottomOf="@+id/tShirt"
+        app:layout_constraintEnd_toEndOf="@+id/tShirt"
+        app:layout_constraintStart_toStartOf="@+id/tShirt"
+        app:layout_constraintTop_toTopOf="@+id/tShirt"
+        android:gravity="center"
+        />
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/headerBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="icon, name, tShirt"
+        />
+    <TextView
+        android:id="@+id/infoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_medium"
+        app:layout_constraintTop_toBottomOf="@id/headerBarrier"
+        android:text="@string/info_title"
+        style="@style/Subtitle3"
+        />
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleBarrier"
+        app:barrierDirection="end"
+        app:barrierMargin="@dimen/offset_small"
+        app:constraint_referenced_ids="ageTitle,positionTitle,teamTitle"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/age_title"
+        android:id="@+id/ageTitle"
+        style="@style/cardStyle"
+        app:layout_constraintTop_toBottomOf="@id/infoTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/offset_small"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/age_value"
+        style="@style/valueStyle"
+        app:layout_constraintTop_toBottomOf="@+id/infoTitle"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginTop="@dimen/offset_small"
+        android:text="29 лет"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/positionTitle"
+        style="@style/cardStyle"
+        android:layout_marginTop="@dimen/offset_small"
+        app:layout_constraintTop_toBottomOf="@+id/ageTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/position_title"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/valueStyle"
+        app:layout_constraintTop_toBottomOf="@id/ageTitle"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginTop="@dimen/offset_small"
+        android:text="Полузащитник"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/teamTitle"
+        style="@style/cardStyle"
+        app:layout_constraintTop_toBottomOf="@id/positionTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/offset_small"
+        android:text="@string/team_title"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeValue"
+        style="@style/cardStyle"
+        app:layout_constraintTop_toBottomOf="@id/teamValue"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/offset_small"
+        android:text="Время"
+        />
+
+    <TextView
+        android:id="@+id/teamValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/valueStyle"
+        app:layout_constraintTop_toBottomOf="@id/positionTitle"
+        app:layout_constraintStart_toStartOf="@id/titleBarrier"
+        android:layout_marginTop="@dimen/offset_small"
+        android:text="Marland worshipers"
+        />
+
+    <TextView
+        android:id="@+id/statsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_medium"
+        app:layout_constraintTop_toBottomOf="@id/timeValue"
+        android:text="@string/stats_title"
+        style="@style/Subtitle3"
+        />
+    <ImageView
+        android:id="@+id/Fotballpole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:src="@drawable/football_field"
+        app:layout_constraintTop_toBottomOf="@id/statisticYellowCard"
+        />
+    <ImageView
+        android:id="@+id/T_shirtFootbal1"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/t_shirt"
+        android:translationX="100dp"
+        android:translationY="-110dp"
+        app:layout_constraintTop_toBottomOf="@id/Fotballpole"
+        />
+    <ImageView
+        android:id="@+id/T_shirtFootbal2"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/t_shirt"
+        android:translationX="140dp"
+        android:translationY="-110dp"
+        app:layout_constraintTop_toBottomOf="@id/Fotballpole"
+        />
+    <ImageView
+        android:id="@+id/T_shirtFootbal3"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/t_shirt"
+        android:translationX="160dp"
+        android:translationY="-150dp"
+        app:layout_constraintTop_toBottomOf="@id/Fotballpole"
+        />
+    <ImageView
+        android:id="@+id/T_shirtFootbal4"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/t_shirt"
+        android:translationX="160dp"
+        android:translationY="-70dp"
+        app:layout_constraintTop_toBottomOf="@id/Fotballpole"
+        />
+    <ImageView
+        android:id="@+id/T_shirtFootbal5"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/t_shirt"
+        android:translationX="195dp"
+        android:translationY="-110dp"
+        app:layout_constraintTop_toBottomOf="@id/Fotballpole"
+        />
+
+    <TextView
+        android:id="@+id/statisticGame"
+        style="@style/statisticCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_small"
+        android:background="@drawable/ovalpicture"
+        android:backgroundTint="@color/teal_700"
+        android:text="32 игры"
+        app:layout_constraintEnd_toStartOf="@id/statisticGoal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statsTitle" />
+
+    <TextView
+        android:id="@+id/statisticGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ovalpicture"
+        android:backgroundTint="@color/black"
+        android:text="32 голов"
+        style="@style/statisticCard"
+        app:layout_constraintEnd_toStartOf="@id/statisticPeredach"
+        app:layout_constraintTop_toTopOf="@id/statisticGame"
+        app:layout_constraintStart_toEndOf="@id/statisticGame"
+        />
+
+    <TextView
+        android:id="@+id/statisticPeredach"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ovalpicture"
+        android:backgroundTint="@color/purple_200"
+        android:text="32 передач"
+        style="@style/statisticCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/statisticGoal"
+        app:layout_constraintTop_toTopOf="@id/statisticGame"
+        />
+    <TextView
+        android:id="@+id/statisticYellowCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ovalpicture"
+        android:backgroundTint="@color/yellow"
+        android:layout_margin="@dimen/offset_medium"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="32 желтых"
+        style="@style/statisticCard"
+        app:layout_constraintEnd_toStartOf="@id/statisticGoal"
+        app:layout_constraintStart_toEndOf="@id/statisticGame"
+        app:layout_constraintTop_toBottomOf="@id/statisticGoal"
+        />
+    <TextView
+        android:id="@+id/statisticRedCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_medium"
+        android:background="@drawable/ovalpicture"
+        android:backgroundTint="@color/red"
+        android:gravity="center"
+        android:text="32 красных"
+        style="@style/statisticCard"
+        app:layout_constraintEnd_toStartOf="@id/statisticPeredach"
+        app:layout_constraintStart_toEndOf="@id/statisticGoal"
+        app:layout_constraintTop_toBottomOf="@id/statisticGame"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

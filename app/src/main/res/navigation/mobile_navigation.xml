@@ -15,7 +15,24 @@
         android:id="@+id/navigation_second"
         android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.second.SecondFragment"
         android:label="@string/title_second"
-        tools:layout="@layout/fragment_second" />
+        tools:layout="@layout/fragment_second">
+        <action
+            android:id="@+id/action_navigation_list_to_navigation_card"
+            app:destination="@+id/navigation_card"
+            app:defaultNavHost="true"
+
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_card"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.second.model.CardFragment"
+        android:label="Карточка игрока"
+        tools:layout="@layout/fragment_card"/>
+
+
+
+
 
     <fragment
         android:id="@+id/navigation_third"
