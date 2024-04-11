@@ -1,4 +1,5 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.second.adapter
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,15 +17,15 @@ import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.AddStrClass
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.ItemUIModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.NeuroUIClass
-
-
 class NeurosAdapter(
     private val onNeuroClicked: (NeuroUIClass) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var items: MutableList<ItemUIModel> = arrayListOf()
     private var currentNeuroCount = 0
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newItems: List<ItemUIModel>){
         items = newItems.toMutableList()
+        notifyDataSetChanged()
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -41,11 +42,9 @@ class NeurosAdapter(
         val binding = AdItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AdHolder(binding)
     }
-
     override fun getItemCount(): Int {
         return items.size
     }
-
     override fun getItemViewType(position: Int): Int {
         val item = items[position]
         return when(item)

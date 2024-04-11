@@ -8,16 +8,37 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.annotation.PluralsRes
+import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.mobiledevelopmentcourselabapp.App
 import com.example.mobiledevelopmentcourselabapp.R
 import com.example.mobiledevelopmentcourselabapp.databinding.FragmentCardBinding
+import com.example.mobiledevelopmentcourselabapp.presentation.view.presenter.CardPresenter
+import com.example.mobiledevelopmentcourselabapp.presentation.view.second.adapter.CommentsAdapter
 import com.example.mobiledevelopmentcourselabapp.presentation.view.second.module.NeuroUIClass
-class CardFragment  : Fragment() {
+import com.google.android.material.snackbar.Snackbar
+import moxy.MvpAppCompatFragment
+import moxy.ktx.moxyPresenter
+import javax.inject.Provider
+import javax.inject.Inject
+
+class CardFragment  : MvpAppCompatFragment(), CardMvpView {
     private var _binding: FragmentCardBinding? = null
     private val binding get() = _binding!!
     private val neuro by lazy { arguments?.getSerializable(CARD_NEURO_KEY) as? NeuroUIClass }
+    private val adapter by lazy { CommentsAdapter() }
+    @Inject
+    lateinit var presenterProvider: Provider<CardPresenter>
+
+    private val presenter by moxyPresenter { presenterProvider.get() }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        App.appComponent?.inject(this)
+        super.onCreate(savedInstanceState)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -109,6 +130,19 @@ class CardFragment  : Fragment() {
                 .circleCrop()
                 .into(binding.icon)
         }
+        binding.comments.commentsList.adapter = adapter
+
+        binding.comments.commentTitle.setOnClickListener {
+            presenter.onCommentTitleClicked()
+        }
+
+        binding.comments.commentInput.doOnTextChanged { text, _, _, _ ->
+            presenter.onCommentChanged(text)
+        }
+
+        binding.comments.sendButton.setOnClickListener {
+            presenter.onSendButtonClicked()
+        }
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.card_menu, menu)
@@ -156,10 +190,39 @@ class CardFragment  : Fragment() {
     companion object {
         const val CARD_NEURO_KEY = "NEURO"
     }
+    override fun setHiddenGroupVisibility(isVisible: Boolean) {
+        binding.comments.hiddenGroup.isVisible = isVisible
+    }
+
+    override fun setCommentChevronIcon(@DrawableRes icon: Int) {
+        binding.comments.chevron.setImageResource(icon)
+    }
+
+    override fun setSendButtonEnabled(isEnabled: Boolean) {
+        binding.comments.sendButton.isEnabled = isEnabled
+    }
+
+    override fun setMessageError(error: String) {
+        binding.comments.commentInputLayout.error = error
+    }
+
+    override fun addComment(comment: String) {
+        adapter.addComment(comment)
+    }
+
+    override fun showSnackbar() {
+        Snackbar.make(
+            requireContext(),
+            binding.root,
+            "Сообщение отправлено",
+            Snackbar.LENGTH_LONG
+        ).show()
+    }
+
+    override fun setCommentText(text: String) {
+        binding.comments.commentInput.setText(text)
+    }
 }
-
-
-
 private fun Int?.append(s: String) {
 
 }

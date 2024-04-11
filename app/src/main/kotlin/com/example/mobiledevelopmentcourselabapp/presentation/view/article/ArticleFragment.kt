@@ -2,6 +2,7 @@ package com.example.mobiledevelopmentcourselabapp.presentation.view.article
 
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import androidx.appcompat.content.res.AppCompatResources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,8 +27,6 @@ class ArticleFragment : Fragment() {
     ): View {
         _binding = FragmentArticleBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        // Обращайся к элементам View здесь
-
         return root
     }
 

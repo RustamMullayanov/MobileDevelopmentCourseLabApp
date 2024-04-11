@@ -6,4 +6,6 @@
     <dimen name="offset_medium">16dp</dimen>
     <dimen name="offset_small">8dp</dimen>
     <dimen name="offset_36">36dp</dimen>
+    <dimen name="icon_24">24dp</dimen>
+    <dimen name="offset_large">24dp</dimen>
 </resources>

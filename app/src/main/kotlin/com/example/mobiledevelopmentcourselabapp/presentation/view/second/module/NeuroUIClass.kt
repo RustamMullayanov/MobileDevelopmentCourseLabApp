@@ -2,6 +2,7 @@ package com.example.mobiledevelopmentcourselabapp.presentation.view.second.modul
 import android.os.Parcelable
 import com.example.mobiledevelopmentcourselabapp.databinding.ItemNeuroBinding
 import java.io.Serializable
+interface ItemUIModel: Serializable
 data class NeuroUIClass(
     val name: String,
     val photoUrl: String,
@@ -30,6 +31,6 @@ class AddStrClass(
     val photo: String,
     val description: String
 ) : ItemUIModel
-interface ItemUIModel : Serializable
+
 
 
