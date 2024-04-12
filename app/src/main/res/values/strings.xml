@@ -36,6 +36,8 @@
     <string name="comments_hint">Введите комментарий</string>
     <string name="comments">Комментарии</string>
     <string name="load_value">Загрузить</string>
+    <string name="open_in_web">Смотреть на сайте</string>
+    <string name="load">Загрузить</string>
     <plurals name="plurals_upgrades">
         <item quantity="one">обновление</item>
         <item quantity="two">обновления</item>
