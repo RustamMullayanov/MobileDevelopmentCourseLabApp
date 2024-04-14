@@ -30,6 +30,10 @@
             android:id="@+id/action_navigation_list_to_navigation_card"
             app:destination="@id/navigation_card"
             app:defaultNavHost="true" />
+        <action
+            android:id="@+id/action_navigation_list_to_edit"
+            app:destination="@id/navigation_edit"
+            app:defaultNavHost="true" />
     </fragment>
 
     <fragment
@@ -37,6 +41,12 @@
         android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.CardFragment"
         android:label="@string/title_card"
         tools:layout="@layout/fragment_card" />
+
+    <fragment
+        android:id="@+id/navigation_edit"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.EditFragment"
+        android:label="Редактирование"
+        tools:layout="@layout/fragment_edit" />
 
     <fragment
         android:id="@+id/navigation_third"

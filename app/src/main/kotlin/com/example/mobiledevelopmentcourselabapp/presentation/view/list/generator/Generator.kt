@@ -1,8 +1,8 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.generator
 
+import com.example.mobiledevelopmentcourselabapp.domain.model.PlayerPosition
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.ItemUiModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.PlayerUiModel
-import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.Position
 import com.github.javafaker.Faker
 
 object Generator {
@@ -23,7 +23,7 @@ object Generator {
                         team = faker.team().name(),
                         number = (1..25).random(),
                         age = (18..35).random(),
-                        position = Position.values().random(),
+                        position = PlayerPosition.values().random(),
                         photoUrl = PHOTO_LINK + photos.random(),
                         gamesCount = (1..50).random(),
                         assistsCount = (1..25).random(),

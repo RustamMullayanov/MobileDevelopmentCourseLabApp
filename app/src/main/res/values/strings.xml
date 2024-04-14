@@ -18,6 +18,14 @@
     <string name="load">Загрузить</string>
     <string name="loading">Загрузка</string>
     <string name="open_in_web">Смотреть на сайте</string>
+    <string name="name">Имя</string>
+    <string name="number">Номер</string>
+    <string name="done">Готово</string>
+    <string name="add">Добавить</string>
+    <string name="goalkeeper">Вратарь</string>
+    <string name="defender">Защитник</string>
+    <string name="midfielder">Полузащитник</string>
+    <string name="forward">Нападающий</string>
 
     <plurals name="age">
         <item quantity="one">год</item>

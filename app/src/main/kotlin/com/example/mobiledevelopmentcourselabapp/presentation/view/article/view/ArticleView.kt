@@ -12,6 +12,7 @@ interface ArticleView: BaseMvpView {
     fun setUpdateTime(time: String)
     fun setJokeFromNinja(joke: String)
     fun setupSpinner(categories: List<String>)
+    fun setSelectedCategory(selectedIndex: Int?)
     @OneExecution
     fun openWebView(link: String)
 }

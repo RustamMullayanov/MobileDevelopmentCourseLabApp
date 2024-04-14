@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.mobiledevelopmentcourselabapp.R
 import com.example.mobiledevelopmentcourselabapp.databinding.ItemAdCardBinding
 import com.example.mobiledevelopmentcourselabapp.databinding.ItemPlayerBinding
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.AdUiModel
@@ -69,6 +70,7 @@ class PlayersAdapter(
                 .with(itemView)
                 .load(player.photoUrl)
                 .circleCrop()
+                .placeholder(R.drawable.account)
                 .into(binding.icon)
         }
 

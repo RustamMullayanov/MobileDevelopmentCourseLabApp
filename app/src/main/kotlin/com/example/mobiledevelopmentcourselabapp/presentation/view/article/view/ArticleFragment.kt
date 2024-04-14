@@ -91,6 +91,10 @@ class ArticleFragment : ArticleView, BaseFragment() {
         binding.secondText.text = joke
     }
 
+    override fun setSelectedCategory(selectedIndex: Int?) {
+        selectedIndex?.let { binding.spinner.setSelection(it) }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
