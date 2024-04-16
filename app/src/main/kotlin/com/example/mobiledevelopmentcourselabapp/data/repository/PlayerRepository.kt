@@ -1,5 +1,6 @@
 package com.example.mobiledevelopmentcourselabapp.data.repository
 
+import android.net.Uri
 import androidx.room.RoomDatabase
 import com.example.mobiledevelopmentcourselabapp.data.database.PlayerDatabase
 import com.example.mobiledevelopmentcourselabapp.data.model.PlayerDbEntity
@@ -13,6 +14,13 @@ class PlayerRepository @Inject constructor(
 
     fun getAll() = dao.getAll()
 
-    fun addPlayer(name: String, number: Int, position: PlayerPosition) =
-        dao.insert(PlayerDbEntity(name = name, number = number, position = position))
+    fun addPlayer(name: String, number: Int, position: PlayerPosition, avatarUri: Uri?) =
+        dao.insert(
+            PlayerDbEntity(
+                name = name,
+                number = number,
+                position = position,
+                avatarUri = avatarUri
+            )
+        )
 }

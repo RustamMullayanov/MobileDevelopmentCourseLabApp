@@ -70,7 +70,8 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
 
             Glide
                 .with(this)
-                .load(player.photoUrl)
+                .load(player.photoUri)
+                .placeholder(R.drawable.account)
                 .circleCrop()
                 .into(binding.icon)
 

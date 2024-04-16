@@ -68,7 +68,7 @@ class PlayersAdapter(
 
             Glide
                 .with(itemView)
-                .load(player.photoUrl)
+                .load(player.photoUri)
                 .circleCrop()
                 .placeholder(R.drawable.account)
                 .into(binding.icon)

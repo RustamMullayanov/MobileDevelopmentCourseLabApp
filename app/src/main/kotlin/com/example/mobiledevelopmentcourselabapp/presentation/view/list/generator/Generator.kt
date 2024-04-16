@@ -1,5 +1,6 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.generator
 
+import android.net.Uri
 import com.example.mobiledevelopmentcourselabapp.domain.model.PlayerPosition
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.ItemUiModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.PlayerUiModel
@@ -24,7 +25,7 @@ object Generator {
                         number = (1..25).random(),
                         age = (18..35).random(),
                         position = PlayerPosition.values().random(),
-                        photoUrl = PHOTO_LINK + photos.random(),
+                        photoUri = Uri.parse(PHOTO_LINK + photos.random()),
                         gamesCount = (1..50).random(),
                         assistsCount = (1..25).random(),
                         goalsCount = (1..25).random(),

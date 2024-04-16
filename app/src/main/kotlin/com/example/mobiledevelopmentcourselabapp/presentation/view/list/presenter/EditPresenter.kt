@@ -1,5 +1,6 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.presenter
 
+import android.net.Uri
 import androidx.core.os.bundleOf
 import com.example.mobiledevelopmentcourselabapp.R
 import com.example.mobiledevelopmentcourselabapp.core.presentation.BasePresenter
@@ -14,6 +15,9 @@ import javax.inject.Inject
 class EditPresenter @Inject constructor(
     private val interactor: PlayerInteractor
 ) : BasePresenter<EditView>() {
+
+    private var avatarUri: Uri? = null
+
     fun onDoneClicked(name: String, number: String, position: Int) {
         interactor.addPlayer(
             name = name,
@@ -24,7 +28,8 @@ class EditPresenter @Inject constructor(
                 R.id.variantMidfielder -> PlayerPosition.MIDFIELD
                 R.id.variantForward -> PlayerPosition.FORWARD
                 else -> PlayerPosition.NONE
-            }
+            },
+            avatarUri = avatarUri
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -32,6 +37,13 @@ class EditPresenter @Inject constructor(
                 viewState.backWithResult(bundleOf(NEED_TO_UPDATE to true))
             }, viewState::showError)
             .disposeOnDestroy()
+    }
+
+    fun onImageSelected(uri: Uri?) {
+        uri?.let {
+            avatarUri = uri
+            viewState.setAvatar(uri)
+        }
     }
 
     companion object {

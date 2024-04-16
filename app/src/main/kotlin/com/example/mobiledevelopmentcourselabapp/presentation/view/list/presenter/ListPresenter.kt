@@ -27,7 +27,8 @@ class ListPresenter @Inject constructor(
             PlayerUiModel(
                 name = dbPlayer.name,
                 number = dbPlayer.number,
-                position = dbPlayer.position
+                position = dbPlayer.position,
+                photoUri = dbPlayer.avatarUri
             )
         }
     }

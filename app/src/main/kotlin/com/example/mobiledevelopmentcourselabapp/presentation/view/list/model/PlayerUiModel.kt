@@ -1,5 +1,6 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.model
 
+import android.net.Uri
 import com.example.mobiledevelopmentcourselabapp.domain.model.PlayerPosition
 import java.io.Serializable
 
@@ -7,7 +8,7 @@ interface ItemUiModel: Serializable
 
 data class PlayerUiModel(
     val name: String,
-    val photoUrl: String = "",
+    val photoUri: Uri? = null,
     val number: Int,
     val team: String  = "",
     val position: PlayerPosition,
