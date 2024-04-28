@@ -18,6 +18,11 @@ class EditPresenter @Inject constructor(
 
     private var avatarUri: Uri? = null
 
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        viewState.checkFilesPermission()
+    }
+
     fun onDoneClicked(name: String, number: String, position: Int) {
         interactor.addPlayer(
             name = name,

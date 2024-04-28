@@ -8,7 +8,7 @@ interface ItemUiModel: Serializable
 
 data class PlayerUiModel(
     val name: String,
-    val photoUri: Uri? = null,
+    val photoUri: String? = null,
     val number: Int,
     val team: String  = "",
     val position: PlayerPosition,
@@ -19,6 +19,8 @@ data class PlayerUiModel(
     val yellowCardCount: Int = 0,
     val redCardsCount: Int = 0,
     var isExpanded: Boolean = false
-): ItemUiModel
+): ItemUiModel {
+    fun getPhotoUri(): Uri = Uri.parse(photoUri)
+}
 
 object AdUiModel : ItemUiModel

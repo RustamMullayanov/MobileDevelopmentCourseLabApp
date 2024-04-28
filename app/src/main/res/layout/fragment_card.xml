@@ -137,13 +137,23 @@
             tools:text="@string/team" />
 
         <TextView
+            android:id="@+id/pdfLink"
+            style="@style/TextView.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/teamTitle"
+            tools:text="Подробный отчет" />
+
+        <TextView
             android:id="@+id/statsTitle"
             style="@style/TextView.Subtitle1.Medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/offset_medium"
             android:text="@string/stats"
-            app:layout_constraintTop_toBottomOf="@id/teamTitle" />
+            app:layout_constraintTop_toBottomOf="@id/pdfLink" />
 
         <TextView
             android:id="@+id/gamesCount"

@@ -3,6 +3,7 @@ package com.example.mobiledevelopmentcourselabapp.di
 import android.content.Context
 import com.example.mobiledevelopmentcourselabapp.di.module.ApiModule
 import com.example.mobiledevelopmentcourselabapp.di.module.DatabaseModule
+import com.example.mobiledevelopmentcourselabapp.di.module.MediaPlayerModule
 import com.example.mobiledevelopmentcourselabapp.di.module.RepositoryModule
 import com.example.mobiledevelopmentcourselabapp.presentation.view.article.view.ArticleFragment
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.CardFragment
@@ -13,7 +14,12 @@ import dagger.Component
 import javax.inject.Singleton
 
 
-@Component(modules = [ApiModule::class, RepositoryModule::class, DatabaseModule::class])
+@Component(modules = [
+    ApiModule::class,
+    RepositoryModule::class,
+    DatabaseModule::class,
+    MediaPlayerModule::class
+])
 @Singleton
 interface AppComponent {
 

@@ -20,6 +20,7 @@ import com.example.mobiledevelopmentcourselabapp.databinding.FragmentCardBinding
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.adapter.CommentsAdapter
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.PlayerUiModel
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.presenter.CardPresenter
+import com.example.mobiledevelopmentcourselabapp.utils.makeLinks
 import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -70,7 +71,7 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
 
             Glide
                 .with(this)
-                .load(player.photoUri)
+                .load(player.getPhotoUri())
                 .placeholder(R.drawable.account)
                 .circleCrop()
                 .into(binding.icon)
@@ -94,6 +95,15 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
 
         binding.comments.sendButton.setOnClickListener {
             presenter.onSendButtonClicked()
+        }
+        binding.comments.sendButton.isEnabled = false
+
+        binding.icon.setOnClickListener {
+            startActivity(
+                Intent(Intent.ACTION_VIEW)
+                    .setData(player?.getPhotoUri())
+                    .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            )
         }
     }
 
@@ -138,6 +148,11 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
         _binding = null
     }
 
+    override fun setupTextLinks(text: String, links: Map<String, () -> Unit>) {
+        binding.pdfLink.text = text
+        binding.pdfLink.makeLinks(links)
+    }
+
     override fun setHiddenGroupVisibility(isVisible: Boolean) {
         binding.comments.hiddenGroup.isVisible = isVisible
     }
@@ -158,8 +173,8 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
         adapter.addComment(comment)
     }
 
-    override fun setCommentText(text: String) {
-        binding.comments.commentInput.setText(text)
+    override fun clearCommentText() {
+        binding.comments.commentInput.setText("")
     }
 
     override fun showSnackbar() {

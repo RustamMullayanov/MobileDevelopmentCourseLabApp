@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val mainTabsSet = setOf(
             R.id.navigation_article,
             R.id.navigation_list,
-            R.id.navigation_third
+            R.id.navigation_video
         )
 
         // Добавлявать новые элементы меню по их id

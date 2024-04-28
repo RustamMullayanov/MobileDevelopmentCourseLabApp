@@ -26,6 +26,9 @@
     <string name="defender">Защитник</string>
     <string name="midfielder">Полузащитник</string>
     <string name="forward">Нападающий</string>
+    <string name="textLinks">Страница в социальной сети\nРезюме</string>
+    <string name="linkSocial">Страница</string>
+    <string name="linkResume">Резюме</string>
 
     <plurals name="age">
         <item quantity="one">год</item>

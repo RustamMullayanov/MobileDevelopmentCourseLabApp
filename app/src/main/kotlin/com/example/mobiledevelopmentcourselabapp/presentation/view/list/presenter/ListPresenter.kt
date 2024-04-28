@@ -1,5 +1,6 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.presenter
 
+import android.media.MediaPlayer
 import com.example.mobiledevelopmentcourselabapp.core.presentation.BasePresenter
 import com.example.mobiledevelopmentcourselabapp.data.model.PlayerDbEntity
 import com.example.mobiledevelopmentcourselabapp.domain.interactor.PlayerInteractor
@@ -10,12 +11,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class ListPresenter @Inject constructor(
-    private val interactor: PlayerInteractor
+    private val interactor: PlayerInteractor,
+    private val mediaPlayer: MediaPlayer
 ): BasePresenter<ListMvpView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         update()
+        mediaPlayer.prepareAsync()
     }
 
     fun onPlayerClicked(playerUiModel: PlayerUiModel) {
@@ -28,7 +31,7 @@ class ListPresenter @Inject constructor(
                 name = dbPlayer.name,
                 number = dbPlayer.number,
                 position = dbPlayer.position,
-                photoUri = dbPlayer.avatarUri
+                photoUri = dbPlayer.avatarUri.toString()
             )
         }
     }

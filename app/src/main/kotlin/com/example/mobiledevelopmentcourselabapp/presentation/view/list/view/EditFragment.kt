@@ -1,5 +1,8 @@
 package com.example.mobiledevelopmentcourselabapp.presentation.view.list.view
 
+import android.Manifest
+import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -9,15 +12,20 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.camera.core.ImageCapture
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.mobiledevelopmentcourselabapp.App
+import com.example.mobiledevelopmentcourselabapp.R
 import com.example.mobiledevelopmentcourselabapp.core.presentation.BaseFragment
 import com.example.mobiledevelopmentcourselabapp.databinding.FragmentEditBinding
+import com.example.mobiledevelopmentcourselabapp.presentation.view.list.model.SelectionType
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.presenter.EditPresenter
 import moxy.ktx.moxyPresenter
 import java.io.File
+import java.util.Date
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -31,30 +39,24 @@ class EditFragment: BaseFragment(), EditView {
     private val presenter by moxyPresenter { presenterProvider.get() }
 
     private var pickMedia : ActivityResultLauncher<PickVisualMediaRequest>? = null
-    private var capturePhoto =
-        registerForActivityResult(ActivityResultContracts.TakePicturePreview()) {
-            Glide.with(binding.avatar).load(it).into(binding.avatar)
+
+    private var imageUri: Uri? = null
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted.not()) {
+                val dialog = AlertDialog.Builder(requireContext())
+                    .setMessage("Необходимо разрешение")
+                    .setCancelable(false)
+                    .setPositiveButton("OK") { _, _  ->
+                        view?.findNavController()?.navigateUp()
+                    }
+
+                dialog.show()
+            }
         }
-
-    val imageCapture = ImageCapture.Builder()
-        //.setTargetRotation(view.display.rotation)
-        .build()
-
-    private val photoFile by lazy {
-        File.createTempFile(
-            "IMG_",
-            ".jpg",
-            requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        )
-    }
-
-    private val photoUri by lazy {
-        FileProvider.getUriForFile(
-            requireContext(),
-            "${requireContext().packageName}.provider",
-            photoFile
-        )
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         App.appComponent?.inject(this)
@@ -62,8 +64,6 @@ class EditFragment: BaseFragment(), EditView {
             registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
                 presenter.onImageSelected(uri)
             }
-//        cameraProvider.bindToLifecycle(lifecycleOwner, cameraSelector, imageCapture,
-//            imageAnalysis, preview)
 
         super.onCreate(savedInstanceState)
     }
@@ -89,9 +89,39 @@ class EditFragment: BaseFragment(), EditView {
         }
 
         binding.avatar.setOnClickListener {
-            //capturePhoto.launch(photoUri)
-            pickMedia?.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+            navigateToSelect()
         }
+
+        checkFilesPermission()
+
+        setFragmentResultListener(SelectSourceFragment.SELECTION_KEY) { _, bundle ->
+            val source = bundle.getString(SelectSourceFragment.SELECTED_VARIANT)?.let { SelectionType.valueOf(it) }
+            when (source) {
+                SelectionType.CAMERA -> takePicture()
+                SelectionType.GALLERY -> launchPicker()
+                else -> {}
+            }
+        }
+    }
+
+    override fun checkFilesPermission() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissionLauncher.launch(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        }
+    }
+
+    private fun launchPicker() {
+        pickMedia?.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+    }
+
+    private fun navigateToSelect() {
+        view?.findNavController()?.navigate(R.id.action_navigation_edit_to_select)
     }
 
     override fun onDestroyView() {
@@ -104,5 +134,24 @@ class EditFragment: BaseFragment(), EditView {
             .with(binding.avatar)
             .load(uri)
             .into(binding.avatar)
+    }
+
+    private val mGetContent = registerForActivityResult<Uri, Boolean>(
+        ActivityResultContracts.TakePicture()
+    ) { success: Boolean ->
+        if (success) {
+            presenter.onImageSelected(imageUri)
+        }
+    }
+
+    private fun takePicture() {
+        val baseDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val pictureFile = File(baseDir, "picture_${Date().time}.jpg")
+        imageUri = FileProvider.getUriForFile(
+            requireContext(),
+            requireContext().packageName + ".provider",
+            pictureFile
+        )
+        mGetContent.launch(imageUri)
     }
 }

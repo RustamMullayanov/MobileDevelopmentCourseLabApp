@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_article">
+    app:startDestination="@+id/navigation_list">
 
     <fragment
         android:id="@+id/navigation_article"
@@ -46,11 +46,21 @@
         android:id="@+id/navigation_edit"
         android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.EditFragment"
         android:label="Редактирование"
-        tools:layout="@layout/fragment_edit" />
+        tools:layout="@layout/fragment_edit" >
+        <action
+            android:id="@+id/action_navigation_edit_to_select"
+            app:destination="@id/navigation_select"
+            app:defaultNavHost="true" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/navigation_select"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.SelectSourceFragment"
+        tools:layout="@layout/fragment_select_source" />
 
     <fragment
-        android:id="@+id/navigation_third"
-        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.third.ThirdFragment"
+        android:id="@+id/navigation_video"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.videoPlayer.VideoPlayerFragment"
         android:label="@string/title_third"
-        tools:layout="@layout/fragment_third" />
+        tools:layout="@layout/fragment_video" />
 </navigation>
