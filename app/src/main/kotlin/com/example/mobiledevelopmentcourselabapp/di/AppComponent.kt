@@ -9,6 +9,8 @@ import com.example.mobiledevelopmentcourselabapp.presentation.view.article.view.
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.CardFragment
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.EditFragment
 import com.example.mobiledevelopmentcourselabapp.presentation.view.list.view.ListFragment
+import com.example.mobiledevelopmentcourselabapp.presentation.view.notifications.view.NotificationAddFragment
+import com.example.mobiledevelopmentcourselabapp.presentation.view.notifications.view.NotificationsListFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -28,6 +30,8 @@ interface AppComponent {
     fun inject(fragment: ListFragment)
     fun inject(fragment: ArticleFragment)
     fun inject(fragment: EditFragment)
+    fun inject(fragment: NotificationsListFragment)
+    fun inject(fragment: NotificationAddFragment)
 
     @Component.Factory
     interface Factory {
