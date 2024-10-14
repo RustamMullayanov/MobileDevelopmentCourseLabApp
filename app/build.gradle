@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -97,4 +98,14 @@ dependencies {
 
     // pdf viewer
     implementation 'io.github.afreakyelf:Pdf-Viewer:2.1.1'
+
+    implementation 'com.github.tbruyelle:RxPermissions:0.12'
+
+    // firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.android.gms:play-services-auth")
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.firebaseui:firebase-ui-auth:8.0.2")
 }

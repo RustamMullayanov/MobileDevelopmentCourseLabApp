@@ -4,6 +4,7 @@
     <string name="title_list">Список</string>
     <string name="title_card">Карточка</string>
     <string name="title_third">Третий</string>
+    <string name="title_notifications">Заметки</string>
 
     <string name="stats">Статистика выступлений</string>
     <string name="count_pattern">%d %s</string>
@@ -29,6 +30,12 @@
     <string name="textLinks">Страница в социальной сети\nРезюме</string>
     <string name="linkSocial">Страница</string>
     <string name="linkResume">Резюме</string>
+    <string name="note">Заметка</string>
+    <string name="date">Дата</string>
+    <string name="time">Время</string>
+
+    <string name="notifications_channel_id">notifications_channel</string>
+    <string name="notifications_channel_name">Заметка</string>
 
     <plurals name="age">
         <item quantity="one">год</item>

@@ -13,7 +13,12 @@
 
     <item
         android:id="@+id/navigation_video"
-        android:icon="@drawable/ic_third_fragment_black_24dp"
+        android:icon="@drawable/ondemand_video"
         android:title="@string/title_third" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_third_fragment_black_24dp"
+        android:title="@string/title_notifications" />
 
 </menu>

@@ -65,9 +65,9 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
             binding.name.text = player.name
             binding.number.text = player.number.toString()
 
-            setStat(binding.ageValue, player.age, R.plurals.age)
+            setStat(binding.ageValue, player.age  + 35, R.plurals.age)
             binding.positionValue.text = player.position.rusName
-            binding.teamValue.text = player.team
+            binding.teamValue.text = "ФК Урал Екатеринбург"//player.team
 
             Glide
                 .with(this)
@@ -76,10 +76,10 @@ class CardFragment : MvpAppCompatFragment(), CardMvpView {
                 .circleCrop()
                 .into(binding.icon)
 
-            setStat(binding.gamesCount, player.gamesCount, R.plurals.games)
-            setStat(binding.goalsCount, player.goalsCount, R.plurals.goals)
-            setStat(binding.assistsCount, player.assistsCount, R.plurals.assists)
-            setStat(binding.yellowCardsCount, player.yellowCardCount, R.plurals.yellows)
+            setStat(binding.gamesCount, player.gamesCount + 4, R.plurals.games)
+            setStat(binding.goalsCount, player.goalsCount + 1, R.plurals.goals)
+            setStat(binding.assistsCount, player.assistsCount + 1, R.plurals.assists)
+            setStat(binding.yellowCardsCount, player.yellowCardCount + 1, R.plurals.yellows)
             setStat(binding.redCardsCount, player.redCardsCount, R.plurals.reds)
         }
 
