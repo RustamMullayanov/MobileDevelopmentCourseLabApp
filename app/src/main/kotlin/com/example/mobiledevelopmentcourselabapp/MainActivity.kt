@@ -7,9 +7,7 @@ import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -23,9 +21,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.mobiledevelopmentcourselabapp.databinding.ActivityMainBinding
 import com.example.mobiledevelopmentcourselabapp.presentation.view.notifications.channelManager.NotificationChannelManager
 import com.example.mobiledevelopmentcourselabapp.presentation.view.notifications.receiver.NotificationsReceiver
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.messaging.FirebaseMessaging
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.tbruyelle.rxpermissions3.RxPermissions
 
@@ -54,7 +50,8 @@ class MainActivity : AppCompatActivity() {
             R.id.navigation_article,
             R.id.navigation_list,
             R.id.navigation_video,
-            R.id.navigation_notifications
+            R.id.navigation_notifications,
+            R.id.navigation_mv
         )
 
         // Добавлявать новые элементы меню по их id
@@ -79,16 +76,16 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            if (!task.isSuccessful) {
-                Log.w("TAG", "Fetching FCM registration token failed", task.exception)
-                return@OnCompleteListener
-            }
-
-            val token = task.result
-            Log.d("TAG", token)
-            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
-        })
+//        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+//            if (!task.isSuccessful) {
+//                Log.w("TAG", "Fetching FCM registration token failed", task.exception)
+//                return@OnCompleteListener
+//            }
+//
+//            val token = task.result
+//            Log.d("TAG", token)
+//            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+//        })
     }
 
     // Main Activity

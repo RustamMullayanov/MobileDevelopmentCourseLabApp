@@ -21,4 +21,9 @@
         android:icon="@drawable/ic_third_fragment_black_24dp"
         android:title="@string/title_notifications" />
 
+    <item
+        android:id="@+id/navigation_mv"
+        android:icon="@drawable/mv"
+        android:title="@string/title_mv" />
+
 </menu>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_notifications">
+    app:startDestination="@+id/navigation_mv">
 
     <fragment
         android:id="@+id/navigation_article"
@@ -79,4 +79,10 @@
         android:id="@+id/navigation_add_notifications"
         android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.notifications.view.NotificationAddFragment"
         tools:layout="@layout/fragment_notification_add" />
+
+    <fragment
+        android:id="@+id/navigation_mv"
+        android:name="com.example.mobiledevelopmentcourselabapp.presentation.view.mv.fragment.MvvmFragment"
+        android:label="@string/title_mv"
+        tools:layout="@layout/fragment_mv" />
 </navigation>
